@@ -6,8 +6,8 @@ export function isLogin() {
   return Boolean(cookies.get("token"))
 }
 
-export function login(username: string, password: string) {
-  return request.post("/auth/login", { username, password })
+export function login(username: string, password: string, totp: string) {
+  return request.post("/auth/login", { username, password, totp })
 }
 
 export function logout() {

@@ -7,7 +7,7 @@ const dispatcher = useDispatcher()
 const footer = computed(() => {
   return `©️ 2019 ~ ${new Date().getFullYear()} winwin_2011`
 })
-const onSignIn = (payload: { username: string; password: string }) =>
+const onSignIn = (payload: { username: string; password: string; totp: string }) =>
   dispatcher.signIn(payload)
 const vars = useThemeVars()
 </script>

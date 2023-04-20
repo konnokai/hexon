@@ -40,12 +40,14 @@ export const useDispatcher = defineStore("dispatcher", {
     async signIn({
       username,
       password,
+      totp
     }: {
       username: string
       password: string
+      totp: string
     }) {
       try {
-        await login(username, password)
+        await login(username, password, totp)
         this.getInfo()
         this.router.push({ name: "home" })
       } catch (e) {

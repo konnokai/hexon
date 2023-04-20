@@ -10,14 +10,15 @@ import HImage from "@/HImage.vue"
 import { useThemeVars } from "@/ui/theme"
 
 const emits = defineEmits<{
-  (e: "on-submit", payload: { username: string; password: string }): void
+  (e: "on-submit", payload: { username: string; password: string; totp: string }): void
   (e: "on-forget"): void
   (e: "on-help"): void
 }>()
 const username = ref("")
 const password = ref("")
+const totp = ref("")
 const onSubmit = () => {
-  emits("on-submit", { username: username.value, password: password.value })
+  emits("on-submit", { username: username.value, password: password.value, totp: totp.value })
 }
 const onForget = () => {
   emits("on-forget")
@@ -39,6 +40,17 @@ const vars = useThemeVars()
     <HInput
       placeholder="密码"
       v-model="password"
+      class="mt-4"
+      attr-type="password"
+      clearable
+    >
+      <template v-slot:prefix>
+        <HIcon :name="HIconName.Keyboard12Key" />
+      </template>
+    </HInput>
+    <HInput
+      placeholder="TOTP"
+      v-model="totp"
       class="mt-4"
       attr-type="password"
       clearable
